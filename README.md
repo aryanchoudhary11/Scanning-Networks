@@ -69,4 +69,43 @@ Attackers manipulate flags to “trick” systems and detect open ports.
 **⚠️ Real-world use:**
 
 - Security teams detect attackers if they see many SYN or XMAS packets in logs.
-= Attackers use these scans because some firewalls respond differently → revealing information.
+- Attackers use these scans because some firewalls respond differently → revealing information.
+
+### 3. TCP/IP Communication
+
+**👉 TCP/IP model** = the backbone of the internet.
+It has 4 layers (simplified OSI model):
+
+|       Layer         |  Example Protocols   |           Function           |
+|---------------------|----------------------|------------------------------|
+|   **Application**   | HTTP, FTP, SMTP, DNS | End-user interaction         | 
+|    **Transport**    |       TCP, UDP       | Reliable/unreliable delivery | 
+|    **Internet**     |       IP, ICMP       | Addressing & routing         |
+| **Network Access**  |   Ethernet, Wi-Fi    | Physical transmission        | 
+
+**TCP vs UDP**
+
+- **TCP (Connection-oriented)** → Reliable (like WhatsApp double ticks). Uses handshake.
+
+- **UDP (Connectionless)** → Fast but unreliable (like live streaming). No handshake.
+
+**⚡ Example:**
+
+- **TCP** → Banking apps (need reliability).
+- **UDP** → Online games, VoIP (need speed).
+
+**Real-world Example of TCP/IP in Scanning**
+
+- Attacker sends a **SYN** to port 80 (HTTP).
+- If server replies with **SYN+ACK**, port 80 is open → attacker can try exploits like SQLi on the web app.
+- If server replies with **RST**, port is closed.
+- If server ignores, firewall is blocking.
+
+✅ That’s how tools like **Nmap, Masscan, ZMap** work under the hood.
+
+### 🔑 Key Takeaways
+
+- **Network scanning** = mapping active systems, ports, and services.
+- **TCP flags** are manipulated by attackers for stealth scans.
+- **TCP/IP model** explains how data moves across the internet.
+- Understanding this is **critical** because every attack after scanning (exploitation, privilege escalation, etc.) depends on this knowledge.
