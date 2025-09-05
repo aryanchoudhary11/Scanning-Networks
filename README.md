@@ -161,4 +161,42 @@ hping3 -S --flood -V -p 80 192.168.1.10
 - Sends continuous SYN packets to port 80.
 - Tests if server can handle SYN flood attacks.
 
-  
+### 3. Hping Scan with AI
+
+👉 Modern use-case: Combine **AI automation** with Hping.
+
+- AI can generate packet crafting scripts based on scanning goals.
+- Example: Instead of manually setting flags, AI suggests the right combinations for stealth scans.
+
+**⚡ Example:**
+
+You ask AI → “Scan for open web ports stealthily”.
+
+AI generates:
+```
+hping3 -S -p 80,443,8080 --scan 192.168.1.0/24
+```
+
+- Saves time and reduces human error.
+
+✅ This is becoming popular in **red team automation.**
+
+### 4. Metasploit Framework
+
+👉 A **penetration testing platform** with built-in scanners.
+
+- Mostly known for exploitation, but also has **auxiliary scanners.**
+- Example: SMB scanner, SSH login brute force, port scanners.
+
+**⚡ Example (inside Metasploit):**
+```
+msfconsole
+use auxiliary/scanner/portscan/tcp
+set RHOSTS 192.168.1.0/24
+set PORTS 1-1000
+run
+```
+
+- Scans all hosts in subnet for open TCP ports.
+
+✅ Advantage → After scanning, you can immediately exploit vulnerable services within the same framework.
