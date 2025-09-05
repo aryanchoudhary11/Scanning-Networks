@@ -302,3 +302,82 @@ fping -a -g 192.168.1.0/24
 ```
 nmap -PP 192.168.1.0/24
 ```
+
+### 7. ICMP Address Mask Ping Scan
+
+👉 Sends an ICMP Address Mask request.
+
+- Host replies with its subnet mask.
+- Rarely enabled today.
+
+**⚡ Example:**
+```
+nmap -PM 192.168.1.0/24
+```
+
+### 8. TCP SYN Ping Scan
+
+👉 Sends a SYN packet to a specific port (e.g., 80).
+
+- If reply = **SYN+ACK** → Host is alive.
+- If reply = **RST** → Host is alive but port closed.
+
+**⚡ Example:**
+```
+nmap -PS80 192.168.1.0/24
+```
+
+### 9. TCP ACK Ping Scan
+
+👉 Sends a TCP ACK packet to a port.
+
+- If reply = **RST** → Host is alive.
+- Useful to bypass firewalls that block SYN packets.
+
+**⚡ Example:**
+```
+nmap -PA80 192.168.1.0/24
+```
+
+### 10. IP Protocol Ping Scan
+
+👉 Sends packets using different IP protocols (ICMP, TCP, UDP, GRE, etc.).
+
+- If any reply → Host is alive.
+
+**⚡ Example:**
+```
+nmap -PO 192.168.1.0/24
+```
+
+### 11. Host Discovery with AI
+
+👉 AI can automate host discovery by:
+
+- Selecting best scan method depending on environment.
+- Running parallel scans and adapting if blocked.
+- Example: AI tries ICMP first, then switches to ARP if no response.
+
+**⚡ Real-world use:**
+
+- Red Teams → Faster stealth scans.
+- Blue Teams → AI alerts when unusual ping patterns appear.
+
+### 12. Ping Sweep Tools
+
+📌 Tools to automate host discovery across a range of IPs:
+
+- **Nmap** → ```nmap -sn 192.168.1.0/24```
+- **fping** → Faster ICMP sweeps.
+- **Angry IP Scanner (GUI)** → Beginner-friendly.
+- **NetScanTools Pro** → Enterprise-grade.
+
+### 🔑 Key Takeaways
+
+- **ARP scans** → Best for LAN.
+- **ICMP scans** → Classic but often blocked.
+- **TCP/UDP scans** → Work when ICMP is blocked.
+- **IP protocol scans** → Catch hosts behind firewalls.
+- **AI + scanning tools** → Automates stealth & efficiency.
+
+---
