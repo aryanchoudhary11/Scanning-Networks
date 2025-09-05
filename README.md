@@ -110,6 +110,8 @@ It has 4 layers (simplified OSI model):
 - **TCP/IP model** explains how data moves across the internet.
 - Understanding this is **critical** because every attack after scanning (exploitation, privilege escalation, etc.) depends on this knowledge.
 
+---
+
 ## Scanning Tools
 
 ### 1. Nmap (Network Mapper)
@@ -200,3 +202,27 @@ run
 - Scans all hosts in subnet for open TCP ports.
 
 ✅ Advantage → After scanning, you can immediately exploit vulnerable services within the same framework.
+
+### 5. NetScanTools Pro
+
+👉 A **Windows-based commercial toolkit** for network discovery.
+
+- GUI-based (easy for beginners).
+- Combines multiple tools: ping sweeps, traceroute, port scanning, SNMP scanning, etc.
+- Good for corporate environments where GUIs are preferred over CLI.
+
+**📌 Real-world Use:**
+
+- Security analysts in enterprises use it for **documentation and quick discovery.**
+- Less stealthy than Nmap/Hping3, but very useful for IT auditing.
+
+
+### 🔑 Key Takeaways
+
+- **Nmap** → Standard port/service/OS scanner.
+- **Hping3** → Custom packet crafting for advanced scans.
+- **Hping + AI** → AI-assisted packet scans for automation.
+- **Metasploit** → Integrated scanning + exploitation.
+- **NetScanTools Pro** → GUI-based scanning for corporate/Windows users.
+
+---
