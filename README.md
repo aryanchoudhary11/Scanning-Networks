@@ -109,3 +109,56 @@ It has 4 layers (simplified OSI model):
 - **TCP flags** are manipulated by attackers for stealth scans.
 - **TCP/IP model** explains how data moves across the internet.
 - Understanding this is **critical** because every attack after scanning (exploitation, privilege escalation, etc.) depends on this knowledge.
+
+## Scanning Tools
+
+### 1. Nmap (Network Mapper)
+
+**👉 Most popular network scanning tool.**
+
+- Open-source, runs on Linux/Windows/Mac.
+- Used for port scanning, service detection, OS fingerprinting, and scriptable scans (NSE).
+
+**📌 Key Features:**
+
+- **Host Discovery** → Find live systems.
+- **Port Scanning** → Open, closed, filtered ports.
+- **Service Version Detection** → e.g., Apache 2.4.29.
+- **OS Fingerprinting** → Linux/Windows version guess.
+- **NSE Scripts** → Automate tasks (brute force, vuln detection).
+
+**⚡ Real-world Example:**
+
+```
+nmap -sS -sV -O 192.168.1.10
+```
+
+- ```-sS``` → SYN stealth scan
+- ```-sV``` → Detect service version
+- ```-O``` → OS fingerprinting
+
+✅ Used daily by penetration testers and also by defenders to audit networks.
+
+### 2. Hping3
+
+👉 A **packet crafting tool** (command-line).
+
+- Unlike Nmap (which automates scans), Hping3 gives **manual control** over TCP/IP packets.
+- Good for **firewall testing, IDS evasion, and custom scans**.
+
+**📌 Key Features:**
+
+- Send TCP, UDP, ICMP packets with custom flags.
+- Perform **traceroute** with different protocols.
+- Test firewall rules and IDS detection.
+
+**⚡ Example:** SYN flood (DoS test)
+
+```
+hping3 -S --flood -V -p 80 192.168.1.10
+```
+
+- Sends continuous SYN packets to port 80.
+- Tests if server can handle SYN flood attacks.
+
+  
