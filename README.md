@@ -226,3 +226,79 @@ run
 - **NetScanTools Pro** → GUI-based scanning for corporate/Windows users.
 
 ---
+
+## Host Discovery
+
+### 1. Host Discovery Techniques
+
+👉 Methods used to check if a system is **alive (up)** or **dead (down).**
+
+- Can be **ICMP-based** (ping)
+- Can be **TCP/UDP-based** (knocking on ports)
+- Can be **Layer 2-based** (ARP scans inside LAN)
+
+📌 Real-world use:
+
+- Attackers → Save time by scanning only live hosts.
+- Defenders → Detect unauthorized scans in logs.
+
+### 2. ARP Ping Scan
+
+👉 Works in **Local Area Network (LAN)** only.
+
+- Sends ARP requests (```Who has 192.168.1.10?```)
+- Live host replies with its **MAC address.**
+
+**⚡ Example:**
+```
+nmap -PR 192.168.1.0/24
+```
+
+✅ Always works in LAN (because ARP cannot be blocked by firewalls).
+
+### 3. UDP Ping Scan
+
+👉 Sends UDP packets to a host.
+
+- If ICMP Port Unreachable is received → Host is alive.
+- If no reply → Could be firewalled or dropped.
+
+**⚡ Example:**
+```
+nmap -PU 192.168.1.0/24
+```
+
+### 4. ICMP ECHO Ping Scan
+
+👉 The classic ping (ICMP Echo Request).
+
+- If host replies with ICMP Echo Reply → It’s alive.
+
+**⚡ Example:**
+```
+nmap -PE 192.168.1.0/24
+```
+
+⚠️ Many networks block ICMP to prevent ping sweeps.
+
+### 5. ICMP ECHO Ping Sweep
+
+👉 Same as above, but scans multiple hosts in a subnet.
+
+- Used to find all live systems quickly.
+
+**⚡ Example:**
+```
+fping -a -g 192.168.1.0/24
+```
+
+### 6. ICMP Timestamp Ping Scan
+
+👉 Sends an ICMP Timestamp request.
+
+- If host responds → It’s alive (and gives system clock info).
+
+**⚡ Example:**
+```
+nmap -PP 192.168.1.0/24
+```
