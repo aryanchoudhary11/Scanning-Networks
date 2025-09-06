@@ -437,3 +437,62 @@ nmap -sX 192.168.1.10   # Xmas scan
 - Same logic as inverse scans.
 
 ⚠️ Works best on Unix/Linux systems, Windows often ignores.
+
+### 6. TCP Maimon Scan
+
+👉 Sends **FIN/ACK** → some BSD-based systems misbehave.
+
+- Detects open ports if no reply.
+
+**⚡ Example:**
+```
+nmap -sM 192.168.1.10
+```
+
+### 7. ACK Flag Probe Scan
+
+👉 Sends **ACK** packet.
+
+- Used to check if firewall rules exist.
+- If **RST** = port unfiltered, if no reply = filtered.
+
+**⚡ Example:**
+```
+nmap -sA 192.168.1.10
+```
+
+### 8. IDLE/IPID Header Scan
+
+👉 Uses a third-party zombie host to scan target.
+
+- Super stealthy because traffic looks like it’s coming from the zombie, not you.
+
+**⚡ Example:**
+```
+nmap -sI zombie_host 192.168.1.10
+```
+
+### 9. UDP Scan
+
+👉 Sends UDP packets.
+
+- If ICMP Port Unreachable → port closed.
+- If no reply → open or filtered.
+
+**⚡ Example:**
+```
+nmap -sU 192.168.1.10
+```
+
+⚠️ Slower than TCP scans.
+
+### 10. SCTP INIT Scan
+
+👉 **SCTP** = Stream Control Transmission Protocol (used in telecom).
+
+- INIT packet used to check open SCTP ports.
+
+**⚡ Example:**
+```
+nmap -sY 192.168.1.10
+```
