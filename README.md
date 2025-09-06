@@ -496,3 +496,91 @@ nmap -sU 192.168.1.10
 ```
 nmap -sY 192.168.1.10
 ```
+
+### 11. SCTP COOKIE ECHO Scan
+
+👉 Sends **COOKIE-ECHO** instead of full INIT handshake.
+
+- Stealthier SCTP scan.
+
+**⚡ Example:**
+```
+nmap -sZ 192.168.1.10
+```
+
+### 12. SSDP and List Scan
+
+- **SSDP Scan** → Finds devices using UPnP (IoT, smart TVs, routers).
+- **List Scan (-sL)** → Doesn’t scan, just lists possible targets (DNS resolution check).
+
+**⚡ Example:**
+```
+nmap -sL 192.168.1.0/24
+```
+
+### 13. IPv6 Scan
+
+👉 Scanning IPv6 hosts (different from IPv4).
+
+**⚡ Example:**
+```
+nmap -6 -sS 2001:db8::1
+```
+
+### 14. Port Scanning with AI
+
+👉 AI helps by:
+
+- Choosing stealthy scan methods automatically.
+- Parallelizing scans and adapting if blocked.
+- Automating post-scan analysis (e.g., “Port 3306 open → check MySQL vuln DB”).
+
+**⚡ Example:** Ask AI → “Scan subnet for open databases” → It generates optimized Nmap/Hping scans.
+
+### 15. Service Version Discovery
+
+👉 Once ports are open, check service version.
+
+- Example: Port 22 → SSH running OpenSSH 7.2p2.
+
+**⚡ Example:**
+```
+nmap -sV 192.168.1.10
+```
+
+### 16. Service Version Discovery with AI
+
+👉 AI can map detected versions to known CVEs automatically.
+
+- Example: Detects Apache 2.4.49 → AI cross-checks → vulnerable to CVE-2021-41773.
+
+### 17. Nmap Scan Time Reduction Techniques
+
+👉 Large scans can be slow, so we use:
+
+- ```-T4 / -T5``` → Faster timing.
+
+- ```-max-retries``` → Limit retries.
+
+- ```--min-rate``` → Packets per second.
+
+- ```-Pn``` → Skip host discovery (assume hosts are up).
+
+- ```-F``` → Fast scan (only common 100 ports).
+
+**⚡ Example:**
+```
+nmap -sS -T4 -F 192.168.1.0/24
+```
+
+### 🔑 Key Takeaways
+
+- **TCP/UDP scans** → Detect open/closed ports.
+
+- **Stealth techniques (SYN, Xmas, IDLE)** → Avoid detection.
+
+- **Service detection** → Know what’s running on those ports.
+
+- **AI scanning** → Faster, smarter, less noisy.
+
+- **Scan optimization** → Save time during big sweeps.
