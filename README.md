@@ -381,3 +381,59 @@ nmap -PO 192.168.1.0/24
 - **AI + scanning tools** → Automates stealth & efficiency.
 
 ---
+
+## Port and Service Discovery
+
+### 1. Port Scanning Techniques
+
+👉 Port = communication endpoint (like a door to a house).
+
+- **Open port** → service is listening (e.g., port 80 = web server).
+- **Closed port** → no service listening.
+- **Filtered port** → firewall blocking.
+
+**⚡ Tools:** Nmap, Masscan, Unicornscan, ZMap.
+
+### 2. TCP Connect / Full-Open Scan
+
+👉 Completes full TCP 3-way handshake.
+
+- Reliable but noisy (easy to detect in logs).
+
+**⚡ Example:**
+```
+nmap -sT 192.168.1.10
+```
+
+### 3. Stealth Scan (Half-Open Scan)
+
+👉 Sends **SYN** → gets **SYN+ACK** → replies with **RST** (instead of ACK).
+
+- Never completes handshake → stealthier.
+
+**⚡ Example:**
+```
+nmap -sS 192.168.1.10
+```
+
+### 4. Inverse TCP Flag Scan
+
+👉 Sends unusual flags (FIN, URG, PSH) to detect open ports.
+
+- Closed ports → reply with **RST**.
+- Open ports → no reply.
+
+**⚡ Example:**
+```
+nmap -sN 192.168.1.10   # NULL scan (no flags)
+nmap -sF 192.168.1.10   # FIN scan
+nmap -sX 192.168.1.10   # Xmas scan
+```
+
+### 5. Xmas Scan
+
+👉 Sends FIN + PSH + URG (like a Christmas tree 🎄 lit up).
+
+- Same logic as inverse scans.
+
+⚠️ Works best on Unix/Linux systems, Windows often ignores.
